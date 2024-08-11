@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "85bd4532-3474-4149-9434-ee46ea12b353",
+		"name": "Toy Robot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23931783"
+	},
+	"item": [
+		{
+			"name": "Place",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"x_coord\": 0,\r\n    \"y_coord\": 0,\r\n    \"orientation\": \"NORTH\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIHost}}/place/",
+					"host": [
+						"{{APIHost}}"
+					],
+					"path": [
+						"place",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Left",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIHost}}/left/",
+					"host": [
+						"{{APIHost}}"
+					],
+					"path": [
+						"left",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Right",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIHost}}/right/",
+					"host": [
+						"{{APIHost}}"
+					],
+					"path": [
+						"right",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIHost}}/move/",
+					"host": [
+						"{{APIHost}}"
+					],
+					"path": [
+						"move",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Report",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "APIHost",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}
