@@ -1,9 +1,7 @@
 import json
 import redis
 
-from typing import Union
-
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 
 from robot import Robot
 from schema import PlaceSchema
@@ -11,24 +9,29 @@ from schema import PlaceSchema
 app = FastAPI()
 r = redis.Redis(host='redis', port=6379, db=0)
 
+
 def get_robot_from_cache():
     robot = r.get('toy-robot')
 
     if robot is None:
-        return {"error": "No robot placed yet."}
+        raise HTTPException(status_code=404, detail="No robot placed yet.")
 
     return json.loads(robot)
+
+
+def set_robot(data: dict):
+    r.set('toy-robot', data)
 
 
 @app.post("/place/")
 def place_robot(place: PlaceSchema):
     data = place.model_dump_json()
-    r.set('toy-robot', data)
+    set_robot(data)
 
     return place.model_dump(exclude={'orientation_value'})
 
 
-@app.post("/left/")
+@app.post("/left/", status_code=204)
 def face_left():
     data = get_robot_from_cache()
 
@@ -36,10 +39,8 @@ def face_left():
     robot.face_left()
     r.set('toy-robot', robot.get_robot().model_dump_json())
 
-    return {"message": "Robot faced left."}
 
-
-@app.post("/right/")
+@app.post("/right/", status_code=204)
 def face_right():
     data = get_robot_from_cache()
 
@@ -47,10 +48,8 @@ def face_right():
     robot.face_right()
     r.set('toy-robot', robot.get_robot().model_dump_json())
 
-    return {"message": "Robot faced right."}
 
-
-@app.post("/move/")
+@app.post("/move/", status_code=204)
 def move_robot():
     data = get_robot_from_cache()
 
@@ -60,10 +59,9 @@ def move_robot():
     try:
         data = robot.get_robot().model_dump_json()
     except ValueError:
-        return {"error": "Command Ignored. Robot will fall off the table."}
+        pass
 
-    r.set('toy-robot', data)
-    return {"message": "Robot moved."}
+    set_robot(data)
 
 
 @app.get("/report/")
