@@ -1,6 +1,6 @@
-from pydantic import BaseModel, field_validator, Field, computed_field
+from pydantic import BaseModel, field_validator, computed_field
 
-from constants import NUM_COLS, NUM_ROWS, ORIENTATION_DISPLAY, ORIENTATION_VALUE
+from constants import NUM_COLS, NUM_ROWS, ORIENTATION_VALUE
 
 
 class PlaceSchema(BaseModel):
