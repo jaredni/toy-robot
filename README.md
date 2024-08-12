@@ -20,7 +20,7 @@ Inside the virtual environment
 pytest
 ```
 
-If there are permission issues, run the following command
+If there are permission warnings, run the following command
 ```bash
-chmod +x test 
+chmod +x tests
 ```
