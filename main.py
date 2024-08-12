@@ -1,5 +1,4 @@
 import json
-import redis
 
 from fastapi import FastAPI, HTTPException
 
@@ -7,7 +6,6 @@ from robot import Robot
 from schema import PlaceSchema
 
 app = FastAPI()
-r = redis.Redis(host='redis', port=6379, db=0)
 
 def read_robot():
     robot = open("robot.json", "r")
